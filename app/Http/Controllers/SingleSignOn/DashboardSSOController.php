@@ -17,8 +17,6 @@ class DashboardSSOController extends Controller
     {
         $today = Carbon::now()->isoFormat('dddd');
         $tanggal_tahun = Carbon::now()->format('j F Y');
-        $data = $request->session()->all();
-        dd($data);
 
         return view('pages.singlesignon.dashboard.dashboardsso', compact('today', 'tanggal_tahun'));
     }
