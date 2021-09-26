@@ -45,7 +45,8 @@ use Auth;
 
 class AuthRequest extends JWT{
 	// private $ssoServer = 'http://ihdnsso.laksitastartup.com/auth?authRequest='; 	// SSO Server Authentication Link
-	private $ssoServer = 'http://ssobkd.ihdn.ac.id/auth?authRequest='; 	// SSO Server Authentication Link
+	// private $ssoServer = 'http://ssobkd.ihdn.ac.id/auth?authRequest='; 	// SSO Server Authentication Link
+	private $ssoServer = 'http://sso.bengkel-kuy.com/auth?authRequest='; 	// SSO Server Authentication Link
 	// private $ssoServer = 'http://127.0.0.1:8000/auth?authRequest='; 	// SSO Server Authentication Link
 	private $logoutLink;
 
@@ -55,11 +56,11 @@ class AuthRequest extends JWT{
 		// tambahkan bagian ini ------
 		if(strtoupper(substr($_SERVER['HTTP_HOST'],strpos($_SERVER['HTTP_HOST'],".")))=='.UNHI.AC.ID'){
 			// $this->ssoServer = 'http://ihdnsso.laksitastartup.com/auth?authRequest=';
-			$this->ssoServer = 'http://ssobkd.ihdn.ac.id/auth?authRequest=';
+			$this->ssoServer = 'http://sso.bengkel-kuy.com/auth?authRequest=';
 		}else{
 			// $this->ssoServer = 'http://sruti.laksitastartup.com/auth?authRequest=';
 			// $this->ssoServer = 'http://ihdnsso.laksitastartup.com/auth?authRequest=';
-			$this->ssoServer = 'http://ssobkd.ihdn.ac.id/auth?authRequest=';
+			$this->ssoServer = 'http://sso.bengkel-kuy.com/auth?authRequest=';
 		}
 		// tambahkan bagian ini ------
 		$this->logoutLink = 'http://' . $_SERVER['HTTP_HOST'] . '/auth?service=logout&sessionId=';
