@@ -77,5 +77,6 @@ class Kernel extends HttpKernel
         'admin_service_gabung' => \App\Http\Middleware\isAdminServiceGabung::class,
         'admin_accounting_gabung' => \App\Http\Middleware\isAdminAccountingGabung::class,
         'admin_inventory_accounting' => \App\Http\Middleware\isAdminInventoryAccount::class,
+        'authClient' => \App\Http\Middleware\AuthMiddleware::class,
     ];
 }
