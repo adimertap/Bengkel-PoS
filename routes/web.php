@@ -32,7 +32,7 @@ Route::get('account/password', 'Account\PasswordController@edit')->name('passwor
 Route::patch('account/password', 'Account\PasswordController@update')->name('password.edit');
 
 Route::group(
-    ['middleware' => 'authClient'],
+    ['middleware' => 'auth'],
     function () {
         // MODUL FRONT OFFICE
         // DASHBOARD
