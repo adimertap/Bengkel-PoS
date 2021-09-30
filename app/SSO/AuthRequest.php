@@ -43,7 +43,8 @@ use App\SSO\JWT;	// for Laravel
 use Auth;
 // include 'JWT.php'; 	// for Native PHP
 
-class AuthRequest extends JWT{
+class AuthRequest extends JWT
+{
 	// private $ssoServer = 'http://ihdnsso.laksitastartup.com/auth?authRequest='; 	// SSO Server Authentication Link
 	// private $ssoServer = 'http://ssobkd.ihdn.ac.id/auth?authRequest='; 	// SSO Server Authentication Link
 	private $ssoServer = 'http://sso.bengkel-kuy.com/login?authRequest='; 	// SSO Server Authentication Link
@@ -51,13 +52,16 @@ class AuthRequest extends JWT{
 	private $logoutLink;
 
 	//constructor
-	public function __construct(){
-		if (session_status() == PHP_SESSION_NONE){session_start();}
+	public function __construct()
+	{
+		if (session_status() == PHP_SESSION_NONE) {
+			session_start();
+		}
 		// tambahkan bagian ini ------
-		if(strtoupper(substr($_SERVER['HTTP_HOST'],strpos($_SERVER['HTTP_HOST'],".")))=='.UNHI.AC.ID'){
+		if (strtoupper(substr($_SERVER['HTTP_HOST'], strpos($_SERVER['HTTP_HOST'], "."))) == '.BENGKEL-KUY.COM') {
 			// $this->ssoServer = 'http://ihdnsso.laksitastartup.com/auth?authRequest=';
 			$this->ssoServer = 'http://sso.bengkel-kuy.com/login?authRequest=';
-		}else{
+		} else {
 			// $this->ssoServer = 'http://sruti.laksitastartup.com/auth?authRequest=';
 			// $this->ssoServer = 'http://ihdnsso.laksitastartup.com/auth?authRequest=';
 			$this->ssoServer = 'http://sso.bengkel-kuy.com/login?authRequest=';
@@ -67,36 +71,38 @@ class AuthRequest extends JWT{
 	}
 
 	// check the user authentication
-	public function authenticate(){
+	public function authenticate()
+	{
 		// echo '<pre>';print_r($_SESSION);print_r($_REQUEST);exit;
 
 		// if there are authentication data send from SSO server
-		if(!empty($_REQUEST['authData'])){
+		if (!empty($_REQUEST['authData'])) {
 			$this->setJWTString($_REQUEST['authData']);
 
 			// decode valid JWT data from SSO server
-			if($this->decodeJWT()){
+			if ($this->decodeJWT()) {
 				//success on validate JWT
-				if(session_id()==$this->getPayloadJWT()->sessionRequest){
+				if (session_id() == $this->getPayloadJWT()->sessionRequest) {
 					// if session is valid then set session and redirect page
 					$_SESSION['authUser'] = $this->getPayloadJWT();
-					header('Location:'.$_SESSION['authUser']->redirect);exit;
-				}else{
+					header('Location:' . $_SESSION['authUser']->redirect);
+					exit;
+				} else {
 					//if session is invalid
 					$this->showError("Invalid browser session !");
 				}
-			}else{
+			} else {
 				$this->showError("Invalid JWT data !");
 			}
 		}
 		// if there is a logout request  
-		if(!empty($_REQUEST['service']) && ($_REQUEST['service']=='logout')){
+		if (!empty($_REQUEST['service']) && ($_REQUEST['service'] == 'logout')) {
 			$this->logout();
 		}
 		// user already authenticated
-		if(!empty($_SESSION['authUser'])){
+		if (!empty($_SESSION['authUser'])) {
 			return true;
-		}else{
+		} else {
 			//
 			// Auth::guard()->logout();
 			// session()->invalidate();
@@ -110,39 +116,45 @@ class AuthRequest extends JWT{
 			];
 			$this->setPayloadJWT($payloadJWT);
 			$this->encodeJWT();
-			header('Location:'.$this->ssoServer.$this->getJWTString());exit;
+			header('Location:' . $this->ssoServer . $this->getJWTString());
+			exit;
 		}
 	}
 
 	// logout
-	public function logout(){
+	public function logout()
+	{
 		// return 'logout';
-		if (!empty($_REQUEST['sessionId'])){
+		if (!empty($_REQUEST['sessionId'])) {
 			session_id($_REQUEST['sessionId']);
-			if (session_status() == PHP_SESSION_NONE){session_start();}
+			if (session_status() == PHP_SESSION_NONE) {
+				session_start();
+			}
 			session_destroy();
 			return 1;
-		}else{
+		} else {
 			return 0;
-		}		
+		}
 	}
 
 	// get user data
-	public function getUser(){
+	public function getUser()
+	{
 		return $_SESSION['authUser'];
 	}
 
 	//
-	public function setLogoutLink($link){
+	public function setLogoutLink($link)
+	{
 		$this->logoutLink = $link;
 	}
 
 	//show error
-	private function showError($error){
+	private function showError($error)
+	{
 		echo "<i>$error</i>";
 		exit;
 	}
-
 }
 
 //calling method from url parameter
