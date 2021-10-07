@@ -80,7 +80,8 @@
                                             <td>{{ $item->customer_bengkel->nama_customer }}</td>
                                             <td>{{ $item->kendaraan->nama_kendaraan }}</td>
                                             <td>{{ $item->mekanik->nama_pegawai }}</td>
-                                            <td>{{ $item->total_bayar }}</td>
+                                            <td>Rp.
+                                            {{ number_format($item->total_bayar,2,',','.') }}</td>
                                             <td>
                                                 <a href="{{route('pembayaranservice.show', $item->id_service_advisor)}}"
                                                     class="btn btn-success btn-sm" type="button">
