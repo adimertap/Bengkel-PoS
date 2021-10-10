@@ -53,7 +53,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return redirect()->to('/sso');
+        return redirect()->to('/pos');
     }
 
     public function username()
