@@ -16,7 +16,7 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (!$request->expectsJson()) {
-            return Redirect::to('https://sso.bengkel-kuy.com');
+            return 'https://sso.bengkel-kuy.com';
         }
     }
 }

@@ -53,7 +53,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('pages.singlesignon.login');
+        return redirect()->to('/sso');
     }
 
     public function username()
