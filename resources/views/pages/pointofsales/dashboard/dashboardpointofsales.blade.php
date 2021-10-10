@@ -40,7 +40,7 @@
                             Anda untuk memlakukan transaksi dan melihat laporan service dan penjualan spare part.
                         </p>
 
-                        <a class="btn btn-primary btn-sm px-3 py-2" href="{{ route('pelayananservice.index') }}">
+                        <a class="btn btn-primary btn-sm px-3 py-2" href="{{ route('laporanservice.index') }}">
                             Get Started
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
