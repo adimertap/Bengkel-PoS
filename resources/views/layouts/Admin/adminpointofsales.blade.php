@@ -29,7 +29,7 @@
 
 <body class="nav-fixed">
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
-        <a class="navbar-brand" href="{{ route('dashboardinventory')}}">
+        <a class="navbar-brand" href="{{ route('dashboardpointofsales')}}">
             <i class="fas fa-file-invoice-dollar mr-2"></i>
             Point of Sales System
         </a>
