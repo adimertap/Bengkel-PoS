@@ -108,8 +108,11 @@
                                         <span
                                             class="diskon-td text-uppercase small font-weight-700 text-muted">Diskon</span>
                                         <br>
-                                        <a href="#" class="ubah-diskon-td text-uppercase small font-weight-300">Ubah
-                                            diskon</a>
+                                        <a class="text-uppercase small font-weight-300" data-toggle="modal"
+                                            data-target="#Modaldiskon">Ubah Diskon
+                                        </a>
+                                        {{-- <a href="#" class="ubah-diskon-td text-uppercase small font-weight-300">Ubah
+                                            diskon</a> --}}
                                         <a href="#" class="simpan-diskon-td text-uppercase small font-weight-300"
                                             hidden="">Simpan</a>
                                     </td>
@@ -296,6 +299,71 @@
         </div>
     </div>
 
+
+    <div class="modal fade" id="Modaldiskon" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Diskon</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="datatable">
+                        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table class="table table-bordered table-hover dataTable" id="dataTableDiskon" width="100%"
+                                        cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                    colspan="1" aria-sort="ascending"
+                                                    aria-label="Name: activate to sort column descending"
+                                                    style="width: 30px;">No</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                    colspan="1" aria-label="Position: activate to sort column ascending"
+                                                    style="width: 80px;">Kode Diskon</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                    colspan="1" aria-label="Position: activate to sort column ascending"
+                                                    style="width: 150px;">Nama Diskon</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                    colspan="1" aria-label="Position: activate to sort column ascending"
+                                                    style="width: 100px;">Jumlah Diskon</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                    colspan="1" aria-label="Actions: activate to sort column ascending"
+                                                    style="width: 77px;">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="diskontable">
+                                            @forelse ($diskon as $item)
+                                            <tr id="item-{{ $item->id_diskon }}"role="row" class="odd">
+                                                <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
+                                                <td>{{ $item->kode_diskon }}</td>
+                                                <td>{{ $item->nama_diskon }}</td>
+                                                <td class="jumlah_diskon">{{ $item->jumlah_diskon }}</td>
+                                                <td>
+                                                    <button class="btn btn-primary btn-xs"
+                                                        onclick="tambahdiskon(event, {{ $item->id_diskon }})" type="button" data-dismiss="modal">Tambah</button>
+                                                </td>
+                                            </tr>
+                                            @empty
+                                           
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </main>
 
 <script>
@@ -316,7 +384,7 @@
         var total_kembalian = $('#kembaliModal').html()
         var split_total_kembalian = total_kembalian.split('Rp.')[1].replace(',', '').replace(',', '')
             .trim()
-        
+
         console.log(split_total_tagihan, split_total_bayar, split_total_kembalian)
 
         // console.log(_token, kode, tanggal, total_tagihan, total_diskon, total_ppn, total_bayar, total_kembalian)
@@ -338,7 +406,7 @@
             url: '/pos/pembayaranservice/' + id_service_advisor,
             data: data,
             success: function (response) {
-                    window.location.href = '/pos/laporanservice/',
+                window.location.href = '/pos/laporanservice/',
                     // console.log(response)
                     alert('Pembayaran telah berhasil')
             },
@@ -347,6 +415,18 @@
             }
 
         });
+    }
+
+    function tambahdiskon(event, id_diskon){
+        var data = $('#item-' + id_diskon)
+        var jumlah_diskon = $(data.find('.jumlah_diskon')[0]).text()
+
+        var laporan_diskon = $('#laporan_diskon').val(jumlah_diskon)
+        var temp = parseInt($('input[name=temp]').val());
+        var total = temp - (temp * diskon / 100);
+        $('.nilai-total1-td').html('Rp. ' + parseInt(total).toLocaleString());
+        $('.temp').val(total);
+        $('.nilai-total2-td').val(total);
     }
 
     function diskon() {
