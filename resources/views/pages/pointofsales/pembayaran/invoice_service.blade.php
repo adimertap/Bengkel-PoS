@@ -420,7 +420,7 @@
     function tambahdiskon(event, id_diskon){
         var data = $('#item-' + id_diskon)
         console.log(data)
-        var jumlah_diskon = (data.find('.jumlah_diskon')[0]).text()
+        var jumlah_diskon = $(data.find('.jumlah_diskon')[0]).text()
         var fix_diskon = parseInt(jumlah_diskon)
         console.log(fix_diskon)
 
