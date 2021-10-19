@@ -422,11 +422,12 @@
         console.log(data)
         var jumlah_diskon = $(data.find('.jumlah_diskon')[0]).text()
         var fix_diskon = parseInt(jumlah_diskon)
-        console.log(fix_diskon)
+      
 
-         $('#laporan_diskon').val(jumlah_diskon)
+        $('#laporan_diskon').val(jumlah_diskon)
+
         var temp = parseInt($('input[name=temp]').val());
-        var total = temp - (temp * diskon / 100);
+        var total = temp - (temp * jumlah_diskon / 100);
         $('.nilai-total1-td').html('Rp. ' + parseInt(total).toLocaleString());
         $('.temp').val(total);
         $('.nilai-total2-td').val(total);
@@ -492,23 +493,23 @@
     //     $(this).prop('hidden', true);
     // });
 
-    $(document).on('click', '.simpan-diskon-td', function (e) {
-        e.preventDefault();
-        $('.diskon-input').prop('hidden', true);
-        $('.nilai-diskon-td').prop('hidden', false);
-        $('.ubah-diskon-td').prop('hidden', false);
-        $(this).prop('hidden', true);
-        diskon();
-    });
+    // $(document).on('click', '.simpan-diskon-td', function (e) {
+    //     e.preventDefault();
+    //     $('.diskon-input').prop('hidden', true);
+    //     $('.nilai-diskon-td').prop('hidden', false);
+    //     $('.ubah-diskon-td').prop('hidden', false);
+    //     $(this).prop('hidden', true);
+    //     diskon();
+    // });
 
-    $(document).on('input', '.diskon-input', function () {
-        $('.nilai-diskon-td').html($(this).val());
-        if ($(this).val().length > 0) {
-            $(this).removeClass('is-invalid');
-        } else {
-            $(this).addClass('is-invalid');
-        }
-    });
+    // $(document).on('input', '.diskon-input', function () {
+    //     $('.nilai-diskon-td').html($(this).val());
+    //     if ($(this).val().length > 0) {
+    //         $(this).removeClass('is-invalid');
+    //     } else {
+    //         $(this).addClass('is-invalid');
+    //     }
+    // });
 
 
     $(document).on('click', '.ubah-ppn-td', function (e) {
