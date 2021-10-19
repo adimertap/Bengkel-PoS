@@ -184,7 +184,7 @@
                                                     @endforelse
                                                     <tr>
                                                         <hr>
-                                                    <td colspan="6" class="text-center font-weight-500">
+                                                    <td colspan="5" class="text-center font-weight-500">
                                                         Grand Total
                                                     </td>
                                                     <td class="text-center">
