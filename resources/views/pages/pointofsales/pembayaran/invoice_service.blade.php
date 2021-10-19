@@ -302,7 +302,7 @@
 
     <div class="modal fade" id="Modaldiskon" data-backdrop="static" tabindex="-1" role="dialog"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-light">
                     <h5 class="modal-title" id="staticBackdropLabel">Tambah Diskon</h5>
@@ -419,9 +419,10 @@
 
     function tambahdiskon(event, id_diskon){
         var data = $('#item-' + id_diskon)
-        var jumlah_diskon = $(data.find('.jumlah_diskon')[0]).text()
+        var jumlah_diskon = parseInt((data.find('.jumlah_diskon')[0]).text())
+        console.log(jumlah_diskon)
 
-        var laporan_diskon = $('#laporan_diskon').val(jumlah_diskon)
+         $('#laporan_diskon').val(jumlah_diskon)
         var temp = parseInt($('input[name=temp]').val());
         var total = temp - (temp * diskon / 100);
         $('.nilai-total1-td').html('Rp. ' + parseInt(total).toLocaleString());
@@ -544,6 +545,7 @@
     });
 
     $(document).on('click', '.btn-bayar', function () {
+      
         var total = parseInt($('.nilai-total2-td').val());
         var bayar = parseInt($('.bayar-input').val());
         if (bayar >= total) {
@@ -556,7 +558,10 @@
             }
         }
     });
-
+    
+    $(document).ready(function () {
+        $('#dataTableDiskon').DataTable();
+    });
 </script>
 
 @endsection
