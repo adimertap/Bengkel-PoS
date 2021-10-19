@@ -20,7 +20,6 @@ class CustomerBengkel extends Model
         'email_customer',
         'nohp_customer',
         'alamat_customer',
-        'id_bengkel'
     ];
 
     protected $hidden = [
@@ -40,10 +39,5 @@ class CustomerBengkel extends Model
                 'id_merk_kendaraan' => 0
             ]
         ];
-    }
-
-    protected static function booted()
-    {
-        static::addGlobalScope(new OwnershipScope);
     }
 }
