@@ -113,12 +113,12 @@
                                         </a>
                                         {{-- <a href="#" class="ubah-diskon-td text-uppercase small font-weight-300">Ubah
                                             diskon</a> --}}
-                                        <a href="#" class="simpan-diskon-td text-uppercase small font-weight-300"
-                                            hidden="">Simpan</a>
+                                        {{-- <a href="#" class="simpan-diskon-td text-uppercase small font-weight-300"
+                                            hidden="">Simpan</a> --}}
                                     </td>
                                     <td class="text-right pb-0 d-flex justify-content-end mt-2">
                                         <input type="number" class="form-control diskon-input mr-2 col-4" min="0"
-                                            max="100" name="diskon" value="0" hidden="" id="laporan_diskon">
+                                            max="100" name="diskon" value="0" id="laporan_diskon">
                                         <span class="nilai-diskon-td mr-1 h5 mb-0 font-weight-700">0</span>
                                         <span class="h5 mb-0 font-weight-700">%</span>
                                     </td>
