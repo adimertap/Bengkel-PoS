@@ -5,6 +5,7 @@ namespace App\Http\Controllers\PointOfSales\Pembayaran;
 use App\Http\Controllers\Controller;
 use App\Model\Accounting\Jurnal\Jurnalpenerimaan;
 use App\Model\FrontOffice\CustomerBengkel;
+use App\Model\FrontOffice\Diskon;
 use App\Model\FrontOffice\PenjualanSparepart;
 use App\Model\PointOfSales\LaporanPenjualanSparepart;
 use App\Model\SingleSignOn\Bengkel;
@@ -55,8 +56,8 @@ class PembayaranSparepartController extends Controller
     public function show($id_penjualan_sparepart)
     {
         $pembayaran = PenjualanSparepart::with('Detailsparepart', 'Bengkel', 'Customer')->findOrFail($id_penjualan_sparepart);
-        // return $pembayaran;
-        return view('pages.pointofsales.pembayaran.invoice_sparepart', compact('pembayaran'));
+        $diskon = Diskon::get();
+        return view('pages.pointofsales.pembayaran.invoice_sparepart', compact('pembayaran','diskon'));
     }
 
     /**
