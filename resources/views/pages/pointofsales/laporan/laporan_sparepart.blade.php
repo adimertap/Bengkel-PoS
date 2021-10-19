@@ -86,7 +86,7 @@
                                             <td>{{ $item->penjualan_sparepart->kode_penjualan }}</td>
                                             <td>{{ $item->penjualan_sparepart->customer->nama_customer }}</td>
                                             <td>{{ $item->penjualan_sparepart->tanggal }}</td>
-                                            <td>Rp. {{ number_format($item->penjualan_sparepart->total_bayar,0,',','.') }}</td>
+                                            <td>Rp. {{ number_format($item->total_tagihan,0,',','.') }}</td>
                                             <td>
                                                 <a href="{{ route('laporansparepart.show', $item->id_laporan) }}"
                                                     class="btn btn-secondary btn-datatable" data-toggle="tooltip" data-placement="top" title="" data-original-title="Detail Laporan">

@@ -87,7 +87,7 @@
                                             <td>{{ $item->penerimaan_service->customer_bengkel->nama_customer }}</td>
                                             <td>{{ $item->penerimaan_service->date }}</td>
                                             <td>Rp.
-                                                {{ number_format($item->penerimaan_service->total_bayar,0,',','.') }}
+                                                {{ number_format($item->total_tagihan,0,',','.') }}
                                             </td>
                                             <td>
                                                 <a href="{{ route('laporanservice.show', $item->id_laporan_service) }}"
