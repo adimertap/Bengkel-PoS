@@ -481,13 +481,13 @@
         $('#totalPPN').html(ppn);
     });
 
-    $(document).on('click', '.ubah-diskon-td', function (e) {
-        e.preventDefault();
-        $('.diskon-input').prop('hidden', false);
-        $('.nilai-diskon-td').prop('hidden', true);
-        $('.simpan-diskon-td').prop('hidden', false);
-        $(this).prop('hidden', true);
-    });
+    // $(document).on('click', '.ubah-diskon-td', function (e) {
+    //     e.preventDefault();
+    //     $('.diskon-input').prop('hidden', false);
+    //     $('.nilai-diskon-td').prop('hidden', true);
+    //     $('.simpan-diskon-td').prop('hidden', false);
+    //     $(this).prop('hidden', true);
+    // });
 
     $(document).on('click', '.simpan-diskon-td', function (e) {
         e.preventDefault();
