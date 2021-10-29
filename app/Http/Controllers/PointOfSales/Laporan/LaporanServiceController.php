@@ -16,7 +16,7 @@ class LaporanServiceController extends Controller
      */
     public function index()
     {
-        $laporan = LaporanService::with(['penerimaan_service.customer_bengkel', 'pegawai'])->orderBy('id_laporan_service', 'ASC')->get();
+        $laporan = LaporanService::with(['penerimaan_service.customer_bengkel', 'pegawai'])->orderBy('id_laporan_service', 'DESC')->get();
         return view('pages.pointofsales.laporan.laporan_service', compact('laporan'));
     }
 
