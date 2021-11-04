@@ -28,8 +28,8 @@ class Bengkel extends Model
 
     public $timestamps = false;
 
-    protected static function booted()
+    public function paymentBengkel()
     {
-        static::addGlobalScope(new OwnershipScope);
+        return $this->hasMany(PaymentBengkel::class, 'id_bengkel', 'id_bengkel');
     }
 }
