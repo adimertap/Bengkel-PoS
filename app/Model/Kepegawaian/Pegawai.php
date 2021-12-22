@@ -5,6 +5,7 @@ namespace App\Model\Kepegawaian;
 use App\Model\Payroll\Detailtunjangan;
 use App\Model\Payroll\Mastergajipokok;
 use App\Model\Payroll\Mastertunjangan;
+use App\Model\SingleSignOn\Cabang;
 use App\Scopes\OwnershipScope;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
