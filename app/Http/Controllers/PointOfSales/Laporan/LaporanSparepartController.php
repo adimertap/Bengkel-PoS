@@ -17,7 +17,14 @@ class LaporanSparepartController extends Controller
      */
     public function index()
     {
-        $laporan = LaporanPenjualanSparepart::with(['penjualan_sparepart.customer', 'pegawai'])->orderBy('id_laporan', 'DESC')->get();
+        if(Auth::user()->pegawai->cabang == null){
+            $laporan = LaporanPenjualanSparepart::with(['penjualan_sparepart.customer', 'pegawai'])
+                ->where('id_bengkel', Auth::user()->id_bengkel)->where('id_cabang','=', null)->orderBy('id_laporan', 'DESC')->get();
+        }else{
+            $laporan = LaporanPenjualanSparepart::with(['penjualan_sparepart.customer', 'pegawai'])
+                ->where('id_bengkel', Auth::user()->bengkel->id_bengkel)->where('id_cabang', Auth::user()->pegawai->cabang->id_cabang)->orderBy('id_laporan', 'DESC')->get();
+        }
+
         return view('pages.pointofsales.laporan.laporan_sparepart', compact('laporan'));
     }
 

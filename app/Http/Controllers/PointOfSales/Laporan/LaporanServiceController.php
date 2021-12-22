@@ -16,7 +16,16 @@ class LaporanServiceController extends Controller
      */
     public function index()
     {
-        $laporan = LaporanService::with(['penerimaan_service.customer_bengkel', 'pegawai'])->orderBy('id_laporan_service', 'DESC')->get();
+        if(Auth::user()->pegawai->cabang == null){
+            $laporan = LaporanService::with(['penerimaan_service.customer_bengkel', 'pegawai'])
+                ->where('id_bengkel', Auth::user()->id_bengkel)->where('id_cabang','=', null)->orderBy('id_laporan_service', 'DESC')->get();
+        }else{
+            $laporan = LaporanService::with(['penerimaan_service.customer_bengkel', 'pegawai'])
+                ->where('id_bengkel', Auth::user()->bengkel->id_bengkel)->where('id_cabang', Auth::user()->pegawai->cabang->id_cabang)->orderBy('id_laporan_service', 'DESC')->get();
+        }
+       
+
+        
         return view('pages.pointofsales.laporan.laporan_service', compact('laporan'));
     }
 
