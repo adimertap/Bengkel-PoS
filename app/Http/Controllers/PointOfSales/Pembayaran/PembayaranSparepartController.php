@@ -22,7 +22,15 @@ class PembayaranSparepartController extends Controller
      */
     public function index()
     {
-        $penjualan_sparepart = PenjualanSparepart::where([['status_bayar', '=', 'Belum Bayar']])->orderBy('id_penjualan_sparepart', 'DESC')->get();
+        if(Auth::user()->pegawai->cabang == null){
+            $penjualan_sparepart = PenjualanSparepart::where('id_bengkel', Auth::user()->id_bengkel)->where('id_cabang','=', null)
+                ->where([['status_bayar', '=', 'Belum Bayar']])->orderBy('id_penjualan_sparepart', 'DESC')->get();
+        }else{
+            $penjualan_sparepart = PenjualanSparepart::where('id_bengkel', Auth::user()->bengkel->id_bengkel)->where('id_cabang', Auth::user()->pegawai->cabang->id_cabang)
+                ->where([['status_bayar', '=', 'Belum Bayar']])->orderBy('id_penjualan_sparepart', 'DESC')->get();
+        }
+        
+
         return view('pages.pointofsales.pembayaran.pembayaran_sparepart', compact('penjualan_sparepart'));
     }
 
