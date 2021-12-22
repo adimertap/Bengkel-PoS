@@ -101,6 +101,12 @@ class PembayaranServiceController extends Controller
         $laporan_service->kembalian = $request->kembalian;
         $laporan_service->id_pegawai = Auth::user()->pegawai->id_pegawai;
         $laporan_service->id_bengkel = Auth::user()->bengkel->id_bengkel;
+        
+        if(Auth::user()->pegawai->cabang != null ){
+            $laporan_service->id_cabang = Auth::user()->pegawai->cabang->id_cabang;
+        }else{
+            
+        }
 
         $laporan_service->save();
 
@@ -115,8 +121,6 @@ class PembayaranServiceController extends Controller
         $jurnal->grand_total = $status_selesai->total_bayar;
         $jurnal->jenis_jurnal = 'Transaksi Service';
         $jurnal->save();
-
-
 
         return $request;
     }

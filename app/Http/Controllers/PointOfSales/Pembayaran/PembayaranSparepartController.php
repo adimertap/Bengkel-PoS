@@ -103,6 +103,12 @@ class PembayaranSparepartController extends Controller
         $laporan_sparepart->id_pegawai = Auth::user()->pegawai->id_pegawai;
         $laporan_sparepart->id_bengkel = Auth::user()->bengkel->id_bengkel;
 
+        if(Auth::user()->pegawai->cabang != null ){
+            $laporan_sparepart->id_cabang = Auth::user()->pegawai->cabang->id_cabang;
+        }else{
+            
+        }
+
         $laporan_sparepart->save();
 
         $jurnal = new Jurnalpenerimaan;
