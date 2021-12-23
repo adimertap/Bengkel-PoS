@@ -110,7 +110,7 @@
 
 <div class="container mt-n4">
     <div class="row">
-        @if(Auth::user()->hasRole('Aplikasi Front Office') || Auth::user()->role == 'owner')
+        @if(Auth::user()->hasRole('Aplikasi Front Office') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 1-->
             <a class="card lift h-100" href="{{ route('dashboardfrontoffice') }}">
@@ -128,7 +128,7 @@
         </div>
         @endif
         @if (Auth::user()->hasRole('Aplikasi Service Advisor') || Auth::user()->hasRole('Aplikasi Service Instructor') ||
-        Auth::user()->role == 'owner')
+        Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 2-->
             <a class="card lift h-100" href="{{ route('dashboardservice') }}">
@@ -146,7 +146,7 @@
         </div>
         @endif
 
-        @if (Auth::user()->hasRole('Aplikasi Point of Sales') || Auth::user()->role == 'owner')
+        @if (Auth::user()->hasRole('Aplikasi Point of Sales') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 3-->
             <a class="card lift h-100" href="{{ route('dashboardpointofsales') }}">
@@ -164,7 +164,7 @@
         </div>
         @endif
 
-        @if (Auth::user()->hasRole('Aplikasi Marketplace') || Auth::user()->role == 'owner')
+        @if (Auth::user()->hasRole('Aplikasi Marketplace') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 3-->
             <a class="card lift h-100" href="{{ route('dashboardmarketplace') }}">
@@ -186,8 +186,7 @@
 {{-- BARIS 2 --}}
 <div class="container">
     <div class="row">
-        @if (Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->hasRole('Aplikasi Purchasing') || Auth::user()->role ==
-        'owner' || Auth::user()->hasRole('Aplikasi Accounting'))
+        @if (Auth::user()->hasRole('Aplikasi Gudang') || Auth::user()->hasRole('Aplikasi Purchasing') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner' || Auth::user()->hasRole('Aplikasi Accounting'))
         <div class="col-3 mt-4">
             <!-- Dashboard example card 1-->
             <a class="card lift h-100" href="{{ route('dashboardinventory') }}">
@@ -205,7 +204,7 @@
         </div>
         @endif
 
-        @if (Auth::user()->role == 'owner')
+        @if (Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 2-->
             <a class="card lift h-100" href="{{ route('pegawai.index') }}">
@@ -223,7 +222,7 @@
         </div>
         @endif
 
-        @if (Auth::user()->role == 'owner')
+        @if (Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 3-->
             <a class="card lift h-100" href="{{ route('gaji-pegawai.index') }}">
@@ -242,7 +241,7 @@
         @endif
 
         @if (Auth::user()->hasRole('Aplikasi Accounting') ||
-        Auth::user()->role == 'owner')
+        Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner')
         <div class="col-3 mt-4">
             <!-- Dashboard example card 3-->
             <a class="card lift h-100" href="{{ route('dashboardaccounting') }}">

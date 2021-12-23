@@ -18,7 +18,7 @@ class isAdminKasir
     public function handle($request, Closure $next)
     {
         $payment_bengkel = PaymentBengkel::where('id_bengkel', Auth::user()->bengkel->id_bengkel)->orderBy('id_payment_bengkel', 'DESC')->first();
-        if (Auth::user() && Auth::user()->hasRole('Aplikasi Point of Sales') || Auth::user()->role == 'owner' && $payment_bengkel->status == 'lunas') {
+        if (Auth::user() && Auth::user()->hasRole('Aplikasi Point of Sales') || Auth::user()->pegawai->jabatan->nama_jabatan == 'Owner' && $payment_bengkel->status == 'lunas') {
             return $next($request);
         }
         abort(403);
