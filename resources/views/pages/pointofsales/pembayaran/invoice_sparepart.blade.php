@@ -439,7 +439,7 @@
         $('#bayarModal').html('Rp. ' + parseInt(bayar).toLocaleString());
         var kembali = parseInt(bayar) - parseInt(total);
         $('#kembaliModal').html('Rp. ' + parseInt(kembali).toLocaleString());
-        var diskon = $('#laporan_diskon').val();
+        var diskon = $('#laporan_diskon').html();
         $('#totalDiskon').html(diskon);
         var ppn = $('#laporan_ppn').val();
         $('#totalPPN').html(ppn);
