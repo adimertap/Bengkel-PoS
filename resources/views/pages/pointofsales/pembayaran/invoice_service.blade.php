@@ -304,7 +304,7 @@
 
     <div class="modal fade" id="Modaldiskon" data-backdrop="static" tabindex="-1" role="dialog"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-light">
                     <h5 class="modal-title" id="staticBackdropLabel">Tambah Diskon</h5>
@@ -324,16 +324,19 @@
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-sort="ascending"
                                                     aria-label="Name: activate to sort column descending"
-                                                    style="width: 30px;">No</th>
+                                                    style="width: 20px;">No</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Position: activate to sort column ascending"
-                                                    style="width: 80px;">Kode Diskon</th>
+                                                    style="width: 50px;">Kode Diskon</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Position: activate to sort column ascending"
                                                     style="width: 150px;">Nama Diskon</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                    colspan="1" aria-label="Position: activate to sort column ascending"
+                                                    style="width: 100px;">Minimal Transaksi</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Position: activate to sort column ascending"
-                                                    style="width: 100px;">Jumlah Diskon</th>
+                                                    style="width: 50px;">Jumlah Diskon</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Actions: activate to sort column ascending"
                                                     style="width: 77px;">Actions</th>
@@ -346,6 +349,7 @@
                                                 <td>{{ $item->kode_diskon }}</td>
                                                 <td>{{ $item->nama_diskon }}</td>
                                                 <td class="jumlah_diskon">{{ $item->jumlah_diskon }}</td>
+                                                <td class="min_order">{{ $item->min_order }}</td>
                                                 <td>
                                                     <button class="btn btn-primary btn-xs"
                                                         onclick="tambahdiskon(event, {{ $item->id_diskon }})" type="button" data-dismiss="modal">Tambah</button>
