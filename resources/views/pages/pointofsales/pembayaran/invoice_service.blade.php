@@ -73,13 +73,13 @@
                                     <td colspan="10">
                                         <div class="font-weight-bold">{{ $item->pivot->jumlah }}</div>
                                     </td>
-                                    @if ($item->Jenissparepart->Diskon == '' | $item->Jenissparepart->Diskon == null)
+                                    @if ($item->Jenissparepart->Diskon->Diskon == '' | $item->Jenissparepart->Diskon->Diskon == null)
                                     <td colspan="10">
                                         <div class="font-weight-bold">-</div>
                                     </td>
                                     @else
                                     <td colspan="10">
-                                        <div class="font-weight-bold">{{ $item->Jenissparepart->Diskon->jumlah_diskon }}</div>
+                                        <div class="font-weight-bold">{{ $item->Jenissparepart->Diskon->Diskon->jumlah_diskon }}</div>
                                     </td>
                                     @endif
                                    

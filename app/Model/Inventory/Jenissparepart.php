@@ -40,7 +40,7 @@ class Jenissparepart extends Model
     }
 
     public function Diskon(){
-        return $this->hasMany(Detaildiskon::class, 'id_jenis_sparepart','id_jenis_sparepart');
+        return $this->belongsTo(Detaildiskon::class, 'id_jenis_sparepart','id_jenis_sparepart');
     }
 
 }
