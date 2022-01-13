@@ -68,8 +68,8 @@ class PembayaranServiceController extends Controller
 
         $customer = CustomerBengkel::where('id_customer_bengkel','=',$pembayaran_service->customer_bengkel->id_customer_bengkel)->get();
         
-        $diskon = Diskon::where('status_diskon','=','Diskon Khusus')->get([]);
-        $laporan_service = LaporanService::where('nominal_bayar', '>', $diskon->min_order)->get();
+        $diskon = Diskon::where('status_diskon','=','Diskon Khusus')->get();
+        $laporan_service = LaporanService::where('nominal_bayar', '>', $diskon['min_order'])->get();
 
         return $laporan_service;
         
