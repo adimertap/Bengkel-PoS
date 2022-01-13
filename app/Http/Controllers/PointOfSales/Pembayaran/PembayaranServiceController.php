@@ -72,7 +72,7 @@ class PembayaranServiceController extends Controller
 
         $laporan_service = LaporanService::where('nominal_bayar', '>=', $diskon->min_order)->get();
 
-        return $laporan_service;
+        return $diskon;
         
 
         
