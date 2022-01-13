@@ -113,7 +113,7 @@
                                             class="diskon-td text-uppercase small font-weight-700 text-muted">Diskon</span>
                                         <br>
                                         <a class="text-uppercase small font-weight-300" data-toggle="modal"
-                                            data-target="#Modaldiskon">Ubah Diskon
+                                            data-target="#Modaldiskon">Lihat Voucher Diskon
                                         </a>
                                         {{-- <a href="#" class="ubah-diskon-td text-uppercase small font-weight-300">Ubah
                                             diskon</a> --}}
