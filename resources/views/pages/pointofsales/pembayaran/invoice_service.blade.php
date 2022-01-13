@@ -73,9 +73,16 @@
                                     <td colspan="10">
                                         <div class="font-weight-bold">{{ $item->pivot->jumlah }}</div>
                                     </td>
+                                    @if ($item->Jenissparepart == '' | $item->Jenissparepart == null)
+                                    <td colspan="10">
+                                        <div class="font-weight-bold">-</div>
+                                    </td>
+                                    @else
                                     <td colspan="10">
                                         <div class="font-weight-bold">{{ $item->Jenissparepart->Diskon }}</div>
                                     </td>
+                                    @endif
+                                   
                                     <td class="text-right font-weight-bold">Rp.
                                         {{ number_format($item->pivot->total_harga,0,',','.') }}</td>
                                 </tr>
