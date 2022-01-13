@@ -35,15 +35,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Invoice item 1-->
+                                @php
+                                    $total_perbaikan = 0;
+                                @endphp
                                 @forelse ($pembayaran_service->detail_perbaikan as $item)
                                 <tr class="border-bottom">
                                     <td colspan="10">
                                         <div class="font-weight-bold">{{ $item->nama_jenis_perbaikan }}</div>
                                     </td>
-                                    <td class="text-right font-weight-bold">Rp.
-                                        {{ number_format($item->pivot->total_harga,0,',','.') }}</td>
+                                    <td class="text-right font-weight-bold">Rp. {{ number_format($item->pivot->total_harga,0,',','.') }}</td>
                                 </tr>
+                                @php
+                                    $total_perbaikan += $item->pivot->total_harga;
+                                @endphp
                                 @empty
 
                                 @endforelse
@@ -66,7 +70,7 @@
                             <tbody>
                               
                                 @php
-                                    $total = 0;
+                                    $total_sparepart = 0;
                                 @endphp
                                 @forelse ($pembayaran_service->detail_sparepart as $item)
                                 <tr class="border-bottom">
@@ -83,7 +87,7 @@
                                     <td class="text-right font-weight-bold">Rp.{{ number_format($item->pivot->total_harga-$item->pivot->total_harga*$item->jenissparepart->diskon[0]->masterdiskon->jumlah_diskon/100,0,',','.') }}</td>
                                 </tr>
                                 @php
-                                    $total += $item->pivot->total_harga-$item->pivot->total_harga*$item->jenissparepart->diskon[0]->masterdiskon->jumlah_diskon/100;
+                                    $total_sparepart += $item->pivot->total_harga-$item->pivot->total_harga*$item->jenissparepart->diskon[0]->masterdiskon->jumlah_diskon/100;
                                 @endphp
 
                                 @empty
@@ -102,12 +106,12 @@
                                 <!-- Invoice subtotal-->
                                 <tr>
                                     <td class="pb-0">
-                                        <p>Total {{ $total }}</p>
+                                       
                                         <div class="text-uppercase small font-weight-700 text-muted">Subtotal:</div>
                                     </td>
                                     <td class="text-right pb-0">
                                         <div class="h5 mb-0 font-weight-700">Rp.
-                                            {{ number_format($pembayaran_service->total_bayar,2,',','.') }}</div>
+                                            {{ number_format($total_perbaikan+$total_sparepart,2,',','.') }}</div>
 
                                     </td>
                                     <td hidden=""><input type="text" class="nilai-subtotal2-td" name="subtotal"
@@ -157,7 +161,7 @@
                                     </td>
                                     <td class="text-right pb-0">
                                         <div class="h5 mb-0 font-weight-700 text-green nilai-total1-td">Rp.
-                                            {{ number_format($pembayaran_service->total_bayar,2,',','.') }}
+                                            {{ number_format($total_perbaikan+$total_sparepart,2,',','.') }}
                                         </div>
                                     </td>
                                     <td class="text-right pb-0" hidden=""><input type="text" class="nilai-total2-td"
