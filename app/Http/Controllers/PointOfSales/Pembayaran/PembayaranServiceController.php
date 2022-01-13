@@ -70,7 +70,7 @@ class PembayaranServiceController extends Controller
         
         $diskon = Diskon::where('status_diskon','=','Diskon Khusus')->get();
 
-        $laporan_service = LaporanService::where('nominal_bayar', '>', $diskon[0]->min_order)->get();
+        $laporan_service = LaporanService::where('nominal_bayar', '>', $diskon[0]->min_order)->groupBy($customer)->get();
 
         return $laporan_service;
         
