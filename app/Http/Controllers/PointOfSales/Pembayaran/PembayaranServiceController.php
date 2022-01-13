@@ -4,6 +4,7 @@ namespace App\Http\Controllers\PointOfSales\Pembayaran;
 
 use App\Http\Controllers\Controller;
 use App\Model\Accounting\Jurnal\Jurnalpenerimaan;
+use App\Model\FrontOffice\CustomerBengkel;
 use App\Model\FrontOffice\Detaildiskon;
 use App\Model\FrontOffice\Diskon;
 use App\Model\PointOfSales\LaporanService;
@@ -63,17 +64,16 @@ class PembayaranServiceController extends Controller
     public function show($id_service_advisor)
     {
         $pembayaran_service = PenerimaanService::with('kendaraan', 'customer_bengkel', 'detail_sparepart', 'detail_perbaikan','detail_sparepart.jenissparepart.diskon.Masterdiskon', 'bengkel')->findOrFail($id_service_advisor);
+
+
+        $customer = CustomerBengkel::where('id_customer_bengkel','=',$pembayaran_service->customer_bengkel->id_customer_bengkel)->get();
         
-        // return $pembayaran_service;
-        // $service = Detaildiskon::join('tb_service_detail_sparepart', 
-        // 'tb_fo_detail_diskon.id_jenis_sparepart', 'tb_service_detail_sparepart.id_jenis_sparepart')
-        // ->select('tb_fo_detail_diskon.id_jenis_sparepart', 'jumlah_diskon','nama_diskon','kode_diskon','status_diskon')
-        // ->get();
+        return $customer;
 
         
 
 
-        $diskon = Diskon::get();
+        
         // return $pembayaran_service;
         return view('pages.pointofsales.pembayaran.invoice_service', compact('pembayaran_service','diskon'));
     }
