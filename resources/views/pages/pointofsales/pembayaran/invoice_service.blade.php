@@ -342,13 +342,13 @@
                                                     style="width: 50px;">Kode Diskon</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Position: activate to sort column ascending"
-                                                    style="width: 150px;">Nama Diskon</th>
+                                                    style="width: 120px;">Nama Diskon</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Position: activate to sort column ascending"
-                                                    style="width: 100px;">Minimal Transaksi(RP)</th>
+                                                    style="width: 80px;">Min. Transaksi (RP)</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Position: activate to sort column ascending"
-                                                    style="width: 50px;">Jumlah Diskon(%)</th>
+                                                    style="width: 40px;">Jumlah Diskon(%)</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Actions: activate to sort column ascending"
                                                     style="width: 77px;">Actions</th>
@@ -369,7 +369,7 @@
                                                         onclick="tambahdiskon(event, {{ $item->id_diskon }})" type="button" data-dismiss="modal">Tambah</button>
                                                     @else
                                                     <button class="btn btn-primary btn-xs"
-                                                        onclick="tambahdiskon(event, {{ $item->id_diskon }})" type="button" data-dismiss="modal" disabled>Tambah</button>
+                                                        onclick="tambahdiskon(event, {{ $item->id_diskon }})" type="button" data-dismiss="modal" disabled>Belum Memenuhi Syarat Voucher</button>
                                                     @endif
 
                                                   
