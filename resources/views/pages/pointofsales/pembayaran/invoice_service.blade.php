@@ -64,7 +64,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Invoice item 1-->
+                              
+                                @php
+                                    $total = 0;
+                                @endphp
                                 @forelse ($pembayaran_service->detail_sparepart as $item)
                                 <tr class="border-bottom">
                                     <td colspan="10">
@@ -79,6 +82,10 @@
                                  
                                     <td class="text-right font-weight-bold">Rp.{{ number_format($item->pivot->total_harga-$item->pivot->total_harga*$item->jenissparepart->diskon[0]->masterdiskon->jumlah_diskon/100,0,',','.') }}</td>
                                 </tr>
+                                @php
+                                    $total += $item->pivot->total_harga-$item->pivot->total_harga*$item->jenissparepart->diskon[0]->masterdiskon->jumlah_diskon/100;
+                                @endphp
+
                                 @empty
 
                                 @endforelse
@@ -95,6 +102,7 @@
                                 <!-- Invoice subtotal-->
                                 <tr>
                                     <td class="pb-0">
+                                        <p>Total {{ $total }}</p>
                                         <div class="text-uppercase small font-weight-700 text-muted">Subtotal:</div>
                                     </td>
                                     <td class="text-right pb-0">
