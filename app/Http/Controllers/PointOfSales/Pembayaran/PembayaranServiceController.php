@@ -64,10 +64,13 @@ class PembayaranServiceController extends Controller
     {
         $pembayaran_service = PenerimaanService::with('kendaraan', 'customer_bengkel', 'detail_sparepart', 'detail_perbaikan', 'bengkel')->findOrFail($id_service_advisor);
         
-        $service = Detaildiskon::join('tb_service_detail_sparepart', 'tb_fo_detail_diskon.id_jenis_sparepart', 'tb_service_detail_sparepart.id_jenis_sparepart')
-        ->get();
+        return $pembayaran_service;
+        // $service = Detaildiskon::join('tb_service_detail_sparepart', 
+        // 'tb_fo_detail_diskon.id_jenis_sparepart', 'tb_service_detail_sparepart.id_jenis_sparepart')
+        // ->select('tb_fo_detail_diskon.id_jenis_sparepart', 'jumlah_diskon','nama_diskon','kode_diskon','status_diskon')
+        // ->get();
 
-        return $service;
+        
 
 
         $diskon = Diskon::get();
