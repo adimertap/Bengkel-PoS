@@ -2,6 +2,8 @@
 
 namespace App\Model\FrontOffice;
 
+use App\Model\Inventory\Jenissparepart;
+use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Detaildiskon extends Model
@@ -29,7 +31,7 @@ class Detaildiskon extends Model
 
     public function Diskon()
     {
-        return $this->belongsTo(MasterDataDiskon::class, 'id_diskon','id_diskon');
+        return $this->belongsTo(Diskon::class, 'id_diskon','id_diskon');
     }
 
     protected static function booted()
