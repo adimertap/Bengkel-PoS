@@ -2,6 +2,8 @@
 
 namespace App\Model\Inventory;
 
+use App\Model\FrontOffice\Detaildiskon;
+use App\Model\FrontOffice\MasterDataDiskon;
 use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,6 +37,10 @@ class Jenissparepart extends Model
 
     public function Mastermerk(){
         return $this->hasMany(Merksparepart::class, 'id_merk','id_merk');
+    }
+
+    public function Diskon(){
+        return $this->hasMany(Detaildiskon::class, 'id_jenis_sparepart','id_jenis_sparepart');
     }
 
 }

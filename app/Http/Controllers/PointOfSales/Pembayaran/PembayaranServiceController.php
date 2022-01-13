@@ -28,7 +28,7 @@ class PembayaranServiceController extends Controller
                 ->where('id_bengkel', Auth::user()->bengkel->id_bengkel)->where('id_cabang', Auth::user()->pegawai->cabang->id_cabang)->where([['status', '=', 'selesai_service']])->orderBy('id_service_advisor', 'DESC')->get();
         }
        
-        // return $service_selesai;
+       
         return view('pages.pointofsales.pembayaran.pembayaran_service', compact('service_selesai'));
     }
 
