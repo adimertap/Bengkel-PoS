@@ -68,7 +68,7 @@ class PembayaranServiceController extends Controller
 
         // $customer = CustomerBengkel::where('id_customer_bengkel','=',$pembayaran_service->customer_bengkel->id_customer_bengkel)->get();
         
-        $diskon = Diskon::where('status_diskon','=','Diskon Khusus')->first();
+        $diskon = Diskon::where('status_diskon','=','Diskon Khusus')->get();
 
       
         // $tess = PenerimaanService::join('tb_pos_laporan_service', 'tb_service_advisor.id_service_advisor', 'tb_pos_laporan_service.id_service_advisor')
