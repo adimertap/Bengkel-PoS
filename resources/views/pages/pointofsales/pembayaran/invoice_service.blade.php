@@ -76,9 +76,7 @@
                                  
                                  
                                     
-                                    <td colspan="10">
-                                        <div class="font-weight-bold">{{ $item->Jenissparepart->Diskon->Diskon->jumlah_diskon }}</div>
-                                    </td>
+                                   
                                   
                                    
                                     <td class="text-right font-weight-bold">Rp.
