@@ -66,17 +66,16 @@ class PembayaranServiceController extends Controller
         $pembayaran_service = PenerimaanService::with('kendaraan', 'customer_bengkel', 'detail_sparepart', 'detail_perbaikan','detail_sparepart.jenissparepart.diskon.Masterdiskon', 'bengkel')->findOrFail($id_service_advisor);
 
 
-        $customer = CustomerBengkel::where('id_customer_bengkel','=',$pembayaran_service->customer_bengkel->id_customer_bengkel)->get();
+        // $customer = CustomerBengkel::where('id_customer_bengkel','=',$pembayaran_service->customer_bengkel->id_customer_bengkel)->get();
         
-        $diskon = Diskon::where('status_diskon','=','Diskon Khusus')->first();
+        // $diskon = Diskon::where('status_diskon','=','Diskon Khusus')->first();
 
-        // $tes = PenerimaanService::where('id_service_advisor','=', $id_service_advisor)->where('nominal_bayar', '>', $diskon->min_order);
+      
+        // $tess = PenerimaanService::join('tb_pos_laporan_service', 'tb_service_advisor.id_service_advisor', 'tb_pos_laporan_service.id_service_advisor')
+        // ->where('tb_service_advisor.id_service_advisor','=', $id_service_advisor)
+        // ->where('tb_pos_laporan_service.nominal_bayar','>', $diskon->min_order)->get();
 
-        $tess = PenerimaanService::join('tb_pos_laporan_service', 'tb_service_advisor.id_service_advisor', 'tb_pos_laporan_service.id_service_advisor')
-        ->where('tb_service_advisor.id_service_advisor','=', $id_service_advisor)
-        ->where('tb_pos_laporan_service.nominal_bayar','>', $diskon->min_order)->get();
-
-        return $tess;
+        // return $tess;
         
 
         
