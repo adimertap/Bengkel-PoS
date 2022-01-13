@@ -319,7 +319,7 @@
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-light">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Diskon</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Voucher Diskon</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
@@ -369,7 +369,7 @@
                                                         onclick="tambahdiskon(event, {{ $item->id_diskon }})" type="button" data-dismiss="modal">Tambah</button>
                                                     @else
                                                     <button class="btn btn-primary btn-xs"
-                                                        onclick="tambahdiskon(event, {{ $item->id_diskon }})" type="button" data-dismiss="modal" disabled>Belum Memenuhi Syarat Voucher</button>
+                                                        onclick="tambahdiskon(event, {{ $item->id_diskon }})" type="button" data-dismiss="modal" disabled>Syarat Belum Terpenuhi</button>
                                                     @endif
 
                                                   
