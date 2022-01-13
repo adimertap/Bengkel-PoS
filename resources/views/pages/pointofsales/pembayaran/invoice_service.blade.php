@@ -333,10 +333,10 @@
                                                     style="width: 150px;">Nama Diskon</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Position: activate to sort column ascending"
-                                                    style="width: 100px;">Minimal Transaksi</th>
+                                                    style="width: 100px;">Minimal Transaksi(RP)</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Position: activate to sort column ascending"
-                                                    style="width: 50px;">Jumlah Diskon</th>
+                                                    style="width: 50px;">Jumlah Diskon(%)</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Actions: activate to sort column ascending"
                                                     style="width: 77px;">Actions</th>
@@ -348,8 +348,8 @@
                                                 <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                                 <td>{{ $item->kode_diskon }}</td>
                                                 <td>{{ $item->nama_diskon }}</td>
-                                                <td class="jumlah_diskon">{{ $item->jumlah_diskon }}</td>
                                                 <td class="min_order">{{ $item->min_order }}</td>
+                                                <td class="jumlah_diskon">{{ $item->jumlah_diskon }}</td>
                                                 <td>
                                                     <button class="btn btn-primary btn-xs"
                                                         onclick="tambahdiskon(event, {{ $item->id_diskon }})" type="button" data-dismiss="modal">Tambah</button>
