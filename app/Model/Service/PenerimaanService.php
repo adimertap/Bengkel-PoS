@@ -85,7 +85,7 @@ class PenerimaanService extends Model
 
     public function detail_sparepart()
     {
-        return $this->belongsToMany(Sparepart::class, 'tb_service_detail_sparepart', 'id_service_advisor', 'id_sparepart')->withPivot('jumlah', 'total_harga', 'harga');
+        return $this->belongsToMany(Sparepart::class, 'tb_service_detail_sparepart', 'id_service_advisor', 'id_sparepart')->withPivot('jumlah', 'total_harga', 'harga','id_jenis_sparepart');
     }
 
     public function detail_perbaikan()
