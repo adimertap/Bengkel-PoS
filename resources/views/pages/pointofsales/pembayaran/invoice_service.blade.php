@@ -59,7 +59,7 @@
                                 <tr class="small text-uppercase text-muted">
                                     <th scope="col" colspan="10">List Sparepart</th>
                                     <th scope="col" colspan="10">Jumlah</th>
-                                    <th scope="col" colspan="10">Diskon</th>
+                                    <th scope="col" colspan="10">Diskon (%)</th>
                                     <th class="text-right" scope="col">Harga</th>
                                 </tr>
                             </thead>
@@ -77,12 +77,7 @@
                                         <div class="font-weight-bold">{{ $item->jenissparepart->diskon[0]->masterdiskon->jumlah_diskon }}</div>
                                     </td>
                                  
-                                    
-                                   
-                                  
-                                   
-                                    <td class="text-right font-weight-bold">Rp.
-                                        {{ number_format($item->pivot->total_harga,0,',','.') }}</td>
+                                    <td class="text-right font-weight-bold">Rp.{{ number_format($item->pivot->total_harga*$item->jenissparepart->diskon[0]->masterdiskon->jumlah_diskon/100,0,',','.') }}</td>
                                 </tr>
                                 @empty
 
