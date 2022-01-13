@@ -29,7 +29,7 @@ class Detaildiskon extends Model
         return $this->belongsTo(Jenissparepart::class, 'id_jenis_sparepart','id_jenis_sparepart');
     }
 
-    public function Diskon()
+    public function Masterdiskon()
     {
         return $this->belongsTo(Diskon::class, 'id_diskon','id_diskon');
     }

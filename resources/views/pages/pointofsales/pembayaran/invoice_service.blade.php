@@ -74,7 +74,7 @@
                                         <div class="font-weight-bold">{{ $item->pivot->jumlah }}</div>
                                     </td>
                                     <td colspan="10">
-                                        <div class="font-weight-bold">{{ $item->jenissparepart->jenis_sparepart }}</div>
+                                        <div class="font-weight-bold">{{ $item->jenissparepart->diskon->masterdiskon->jumlah_diskon }}</div>
                                     </td>
                                  
                                     
