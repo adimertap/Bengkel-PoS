@@ -70,10 +70,12 @@ class PembayaranServiceController extends Controller
         
         $diskon = Diskon::where('status_diskon','=','Diskon Khusus')->first();
 
-        $tes = PenerimaanService::where('id_service_advisor','=', $id_service_advisor)->where('nominal_bayar', '>', $diskon->min_order);
+        // $tes = PenerimaanService::where('id_service_advisor','=', $id_service_advisor)->where('nominal_bayar', '>', $diskon->min_order);
 
         $tess = PenerimaanService::join('tb_pos_laporan_service', 'tb_service_advisor.id_service_advisor', 'tb_pos_laporan_service.id_service_advisor')
         ->where('tb_pos_laporan_service.nominal_bayar','>', $diskon->min_order)->get();
+
+        return $tess;
         
 
         
