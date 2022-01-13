@@ -4,6 +4,7 @@ namespace App\Http\Controllers\PointOfSales\Pembayaran;
 
 use App\Http\Controllers\Controller;
 use App\Model\Accounting\Jurnal\Jurnalpenerimaan;
+use App\Model\FrontOffice\Detaildiskon;
 use App\Model\FrontOffice\Diskon;
 use App\Model\PointOfSales\LaporanService;
 use App\Model\Service\PenerimaanService;
@@ -63,7 +64,7 @@ class PembayaranServiceController extends Controller
     {
         $pembayaran_service = PenerimaanService::with('kendaraan', 'customer_bengkel', 'detail_sparepart', 'detail_perbaikan', 'bengkel')->findOrFail($id_service_advisor);
         
-        $service = PenerimaanService::join('tb_fo_detail_diskon', 'tb_service_detail_sparepart.id_jenis_sparepart', 'tb_fo_detail_diskon.id_jenis_sparepart')
+        $service = Detaildiskon::join('tb_service_detail_sparepart', 'tb_fo_detail_diskon.id_jenis_sparepart', 'tb_service_detail_sparepart.id_jenis_sparepart')
         ->get();
 
         return $service;
