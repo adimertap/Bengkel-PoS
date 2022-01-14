@@ -104,8 +104,8 @@
                                     if (!empty($item->jenissparepart->diskon)) {
                                         $total_sparepart += $item->pivot->total_harga-$item->pivot->total_harga*$item->jenissparepart->diskon[0]->masterdiskon->jumlah_diskon/100;
                                     }else {
-                                        $total_sparepart += $item->pivot->total_harga
-                                    }
+                                        $total_sparepart += $item->pivot->total_harga;
+                                    } 
                                     
                                 @endphp
 
