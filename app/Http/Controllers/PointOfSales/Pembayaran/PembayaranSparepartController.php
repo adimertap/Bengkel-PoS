@@ -63,8 +63,8 @@ class PembayaranSparepartController extends Controller
      */
     public function show($id_penjualan_sparepart)
     {
-        $pembayaran = PenjualanSparepart::with('Detailsparepart', 'Bengkel', 'Customer')->findOrFail($id_penjualan_sparepart);
-        $diskon = Diskon::get();
+        $pembayaran = PenjualanSparepart::with('Detailsparepart.jenissparepart.diskon.Masterdiskon', 'Bengkel', 'Customer')->findOrFail($id_penjualan_sparepart);
+        $diskon = Diskon::where('status_diskon','=','Diskon Khusus')->get();
         return view('pages.pointofsales.pembayaran.invoice_sparepart', compact('pembayaran','diskon'));
     }
 

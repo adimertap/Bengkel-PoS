@@ -32,11 +32,15 @@
                                 <tr class="small text-uppercase text-muted">
                                     <th scope="col" colspan="10">List Sparepart</th>
                                     <th scope="col" colspan="10">Jumlah</th>
+                                    <th scope="col" colspan="10">Diskon (%)</th>
                                     <th class="text-right" scope="col">Harga</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Invoice item 1-->
+                                @php
+                                    $total_sparepart = 0;
+                                @endphp
+
                                 @forelse ($pembayaran->Detailsparepart as $item)
                                 <tr class="border-bottom">
                                     <td colspan="10">
@@ -45,9 +49,27 @@
                                     <td colspan="10">
                                         <div class="font-weight-bold">{{ $item->pivot->jumlah }}</div>
                                     </td>
-                                    <td class="text-right font-weight-bold">Rp.
-                                        {{ number_format($item->pivot->total_harga,0,',','.') }}</td>
+                                    <td colspan="10">
+                                        <div class="font-weight-bold">{{ $item->jenissparepart->diskon[0]->masterdiskon->jumlah_diskon ?? '-' }}%</div>
+                                    </td>
+                                    @if (count($item->jenissparepart->diskon) == 0)
+                                        <td class="text-right font-weight-bold">Rp.{{ number_format($item->pivot->total_harga,0,',','.')}}</td>
+                                    @else
+                                        <td class="text-right font-weight-bold">Rp.{{ number_format($item->pivot->total_harga-$item->pivot->total_harga*$item->jenissparepart->diskon[0]->masterdiskon->jumlah_diskon/100,0,',','.')}}</td>
+                                    @endif
+                                    {{-- <td class="text-right font-weight-bold">Rp.
+                                        {{ number_format($item->pivot->total_harga,0,',','.') }}</td> --}}
                                 </tr>
+
+                                @php
+                                if (isset($item->jenissparepart->diskon[0]->masterdiskon) ? $item->jenissparepart->diskon[0]->masterdiskon : 0) {
+                                    $total_sparepart += $item->pivot->total_harga-$item->pivot->total_harga*$item->jenissparepart->diskon[0]->masterdiskon->jumlah_diskon/100;
+                                }else {
+                                    $total_sparepart += $item->pivot->total_harga;
+                                } 
+                                
+                                @endphp
+
                                 @empty
 
                                 @endforelse
@@ -68,7 +90,7 @@
                                     </td>
                                     <td class="text-right pb-0">
                                         <div class="h5 mb-0 font-weight-700">Rp.
-                                            {{ number_format($pembayaran->total_bayar,2,',','.') }}</div>
+                                            {{ number_format($total_sparepart,2,',','.') }}</div>
 
                                     </td>
                                     <td hidden=""><input type="text" class="nilai-subtotal2-td" name="subtotal"
@@ -94,8 +116,7 @@
                                     <td class="pb-0">
                                         <span class="ppn-td text-uppercase small font-weight-700 text-muted">PPN</span>
                                         <br>
-                                        <a href="#" class="ubah-ppn-td text-uppercase small font-weight-300">Ubah
-                                            PPN</a>
+                                        <a href="#" class="ubah-ppn-td text-uppercase small font-weight-300">Lihat Voucher Diskon</a>
                                         <a href="#" class="simpan-ppn-td text-uppercase small font-weight-300"
                                             hidden="">Simpan</a>
                                     </td>
@@ -114,7 +135,7 @@
                                     </td>
                                     <td class="text-right pb-0">
                                         <div class="h5 mb-0 font-weight-700 text-green nilai-total1-td">Rp.
-                                            {{ number_format($pembayaran->total_bayar,2,',','.') }}</div>
+                                            {{ number_format($total_sparepart,2,',','.') }}</div>
                                     </td>
                                     <td class="text-right pb-0" hidden=""><input type="text" class="nilai-total2-td"
                                             name="total" value="0"></td>
@@ -208,16 +229,19 @@
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-sort="ascending"
                                                     aria-label="Name: activate to sort column descending"
-                                                    style="width: 30px;">No</th>
+                                                    style="width: 20px;">No</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Position: activate to sort column ascending"
-                                                    style="width: 80px;">Kode Diskon</th>
+                                                    style="width: 50px;">Kode Diskon</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Position: activate to sort column ascending"
-                                                    style="width: 150px;">Nama Diskon</th>
+                                                    style="width: 120px;">Nama Diskon</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                    colspan="1" aria-label="Position: activate to sort column ascending"
+                                                    style="width: 80px;">Min. Transaksi (RP)</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Position: activate to sort column ascending"
-                                                    style="width: 100px;">Jumlah Diskon</th>
+                                                    style="width: 40px;">Jumlah Diskon(%)</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Actions: activate to sort column ascending"
                                                     style="width: 77px;">Actions</th>
@@ -229,10 +253,16 @@
                                                 <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                                 <td>{{ $item->kode_diskon }}</td>
                                                 <td>{{ $item->nama_diskon }}</td>
+                                                <td class="min_order">{{ $item->min_order }}</td>
                                                 <td class="jumlah_diskon">{{ $item->jumlah_diskon }}</td>
                                                 <td>
+                                                    @if ($total_perbaikan+$total_sparepart > $item->min_order)
                                                     <button class="btn btn-primary btn-xs"
                                                         onclick="tambahdiskon(event, {{ $item->id_diskon }})" type="button" data-dismiss="modal">Tambah</button>
+                                                    @else
+                                                    <button class="btn btn-primary btn-xs"
+                                                        onclick="tambahdiskon(event, {{ $item->id_diskon }})" type="button" data-dismiss="modal" disabled>Syarat Belum Terpenuhi</button>
+                                                    @endif
                                                 </td>
                                             </tr>
                                             @empty
@@ -519,6 +549,10 @@
                 $('.nominal-error').prop('hidden', false);
             }
         }
+    });
+
+    $(document).ready(function () {
+        $('#dataTableDiskon').DataTable();
     });
 
 </script>
