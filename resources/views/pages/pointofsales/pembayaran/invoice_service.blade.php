@@ -101,7 +101,7 @@
                                    
                                 </tr>
                                 @php
-                                    if (!empty($item->jenissparepart->diskon)) {
+                                    if (count($item->jenissparepart->diskon) == 0) {
                                         $total_sparepart += $item->pivot->total_harga-$item->pivot->total_harga*$item->jenissparepart->diskon[0]->masterdiskon->jumlah_diskon/100;
                                     }else {
                                         $total_sparepart += $item->pivot->total_harga;
