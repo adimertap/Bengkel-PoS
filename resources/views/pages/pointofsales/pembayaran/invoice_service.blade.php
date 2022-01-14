@@ -100,14 +100,14 @@
                                  
                                    
                                 </tr>
-                                {{-- @php
-                                    if (!empty($item->jenissparepart->diskon)) {
+                                @php
+                                    if (isset($item->jenissparepart->diskon[0]->masterdiskon) ? $item->jenissparepart->diskon[0]->masterdiskon : 0)) {
                                         $total_sparepart += $item->pivot->total_harga-$item->pivot->total_harga*$item->jenissparepart->diskon[0]->masterdiskon->jumlah_diskon/100;
                                     }else {
                                         $total_sparepart += $item->pivot->total_harga;
                                     } 
                                     
-                                @endphp --}}
+                                @endphp
 
                                 @empty
 
