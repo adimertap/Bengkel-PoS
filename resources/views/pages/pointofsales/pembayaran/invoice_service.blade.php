@@ -80,20 +80,20 @@
                                     <td colspan="10">
                                         <div class="font-weight-bold">{{ $item->pivot->jumlah }}</div>
                                    
-                                    @if (isset($item->jenissparepart->diskon[0]) && is_object($item->jenissparepart->diskon[0]))
+                                    {{-- @if (isset($item->jenissparepart->diskon[0]) && is_object($item->jenissparepart->diskon[0]))
                                         <td colspan="10">
                                             <div class="font-weight-bold">-</div>
                                         </td>
                                             <td class="text-right font-weight-bold">Rp.{{ number_format($item->pivot->total_harga,0,',','.') }}</td>
                                     
-                                    @else
+                                    @else --}}
                                         <td colspan="10">
                                             <div class="font-weight-bold">{{ $item->jenissparepart->diskon[0]->masterdiskon->jumlah_diskon }}%</div>
                                         </td>
                                             <td class="text-right font-weight-bold">Rp.{{ number_format($item->pivot->total_harga-$item->pivot->total_harga*$item->jenissparepart->diskon[0]->masterdiskon->jumlah_diskon/100,0,',','.') }}</td>
                                     
                                    
-                                    @endif
+                                    {{-- @endif --}}
 
                                     
                                    
