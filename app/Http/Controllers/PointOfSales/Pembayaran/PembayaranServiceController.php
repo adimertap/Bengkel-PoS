@@ -64,7 +64,7 @@ class PembayaranServiceController extends Controller
     public function show($id_service_advisor)
     {
         $pembayaran_service = PenerimaanService::with('kendaraan', 'customer_bengkel', 'detail_sparepart', 'detail_perbaikan','detail_sparepart.jenissparepart.diskon.Masterdiskon', 'bengkel')->findOrFail($id_service_advisor);
-
+        return $pembayaran_service;
 
         // $customer = CustomerBengkel::where('id_customer_bengkel','=',$pembayaran_service->customer_bengkel->id_customer_bengkel)->get();
         
