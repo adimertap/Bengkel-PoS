@@ -88,7 +88,7 @@
                                     
                                     @else --}}
                                         <td colspan="10">
-                                            <div class="font-weight-bold">{{ $item->jenissparepart->diskon[0]->masterdiskon->jumlah_diskon ?? - }}%</div>
+                                            <div class="font-weight-bold">{{ $item->jenissparepart->diskon[0]->masterdiskon->jumlah_diskon ?? '-' }}%</div>
                                         </td>
                                             <td class="text-right font-weight-bold">Rp.{{ number_format($item->pivot->total_harga-$item->pivot->total_harga*$item->jenissparepart->diskon[0]->masterdiskon->jumlah_diskon/100,0,',','.') }}</td>
                                     
