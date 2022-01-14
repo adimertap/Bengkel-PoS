@@ -104,7 +104,7 @@
                                             class="diskon-td text-uppercase small font-weight-700 text-muted">Diskon</span>
                                         <br>
                                         <a class="text-uppercase small font-weight-300" data-toggle="modal"
-                                            data-target="#Modaldiskon">Ubah Diskon
+                                            data-target="#Modaldiskon">Lihat Voucher Diskon
                                         </a>
                                     </td>
                                     <td class="text-right pb-0 d-flex justify-content-end mt-2">
