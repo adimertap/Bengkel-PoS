@@ -3,7 +3,6 @@
 namespace App\Model\FrontOffice;
 
 use App\Model\Inventory\Jenissparepart;
-use App\Scopes\OwnershipScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Detaildiskon extends Model
