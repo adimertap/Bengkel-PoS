@@ -116,7 +116,7 @@
                                     <td class="pb-0">
                                         <span class="ppn-td text-uppercase small font-weight-700 text-muted">PPN</span>
                                         <br>
-                                        <a href="#" class="ubah-ppn-td text-uppercase small font-weight-300">Lihat Voucher Diskon</a>
+                                        <a href="#" class="ubah-ppn-td text-uppercase small font-weight-300">Ubah PPN</a>
                                         <a href="#" class="simpan-ppn-td text-uppercase small font-weight-300"
                                             hidden="">Simpan</a>
                                     </td>
