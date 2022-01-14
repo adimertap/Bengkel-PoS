@@ -256,7 +256,7 @@
                                                 <td class="min_order">{{ $item->min_order }}</td>
                                                 <td class="jumlah_diskon">{{ $item->jumlah_diskon }}</td>
                                                 <td>
-                                                    @if ($total_perbaikan+$total_sparepart > $item->min_order)
+                                                    @if ($total_sparepart > $item->min_order)
                                                     <button class="btn btn-primary btn-xs"
                                                         onclick="tambahdiskon(event, {{ $item->id_diskon }})" type="button" data-dismiss="modal">Tambah</button>
                                                     @else
