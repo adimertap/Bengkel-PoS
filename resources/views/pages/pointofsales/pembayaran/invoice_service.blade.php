@@ -80,7 +80,7 @@
                                     <td colspan="10">
                                         <div class="font-weight-bold">{{ $item->pivot->jumlah }}</div>
                                    
-                                    @if (!empty($item->jenissparepart->diskon))
+                                    @if (!empty($item->jenissparepart->diskon[0]))
                                         <td colspan="10">
                                             <div class="font-weight-bold">-</div>
                                         </td>
