@@ -122,7 +122,7 @@
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <label class="small">: Rp.{{ number_format( $laporan->diskon,2,',','.') }}</label> 
+                                        <label class="small">: {{ $laporan->diskon }} %</label> 
                                     </div>
                                 </div>
                                 <div class="row">
